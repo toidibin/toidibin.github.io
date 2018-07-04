@@ -2,9 +2,7 @@
 <ol>
 <li>安装完成后，发现直接用公网ip无法访问默认页面，如果遇到这种情况，直接去查看阿里云后台实例的安全组开放下80端口即可。</li>
 </ol>
-<h3 id="开放3306端口"><a href="#开放3306端口" class="headerlink" title="开放3306端口"></a>开放3306端口</h3><p>Mysql为了安全性，在默认情况下用户只允许在本地登录，可是在有此情况下，还是需要使用用户进行远程连接，因此为了使其可以远程需要进行如下操作：<br>一、允许root用户在任何地方进行远程登录，并具有所有库任何操作权限，具体操作如下：<br>在本机先使用root用户登录mysql：</p>
-<table><tr><td bgcolor="#D1EEEE">mysql -u root -p”youpassword” </td></tr></table><br>进行授权操作：<br><table><tr><td bgcolor="#D1EEEE">mysql&gt;GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘youpassword’ WITH GRANT OPTION; </td></tr></table><br>重载授权表：<br><table><tr><td bgcolor="#D1EEEE">FLUSH PRIVILEGES; </td></tr></table><br>退出mysql数据库：<br><table><tr><td bgcolor="#D1EEEE">exit</td></tr></table>
-
+<h3 id="开放3306端口"><a href="#开放3306端口" class="headerlink" title="开放3306端口"></a>开放3306端口</h3><p>Mysql为了安全性，在默认情况下用户只允许在本地登录，可是在有此情况下，还是需要使用用户进行远程连接，因此为了使其可以远程需要进行如下操作：<br>一、允许root用户在任何地方进行远程登录，并具有所有库任何操作权限，具体操作如下：<br>在本机先使用root用户登录mysql：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p<span class="string">"youpassword"</span> </span><br><span class="line"> </span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'youpassword'</span> WITH GRANT OPTION; <span class="comment">//进行授权操作：</span></span><br><span class="line"></span><br><span class="line">FLUSH PRIVILEGES; <span class="comment">// 重载授权表：</span></span><br><span class="line"></span><br><span class="line">exit <span class="comment">// 退出mysql数据库：</span></span><br></pre></td></tr></table></figure></p>
 <p>用navicat远程链接数据库发现出现如图错误：<br><img src="/2018/06/27/LNMP初始化操作/mysql.png" alt="10060"><br>CentOS 7.0默认使用的是firewall作为防火墙，这里改为iptables防火墙。<br>解决方法：</p>
 <ol>
 <li><p>关闭firewall</p>
